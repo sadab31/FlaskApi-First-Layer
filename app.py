@@ -5,16 +5,27 @@ app = Flask(__name__)
 api = Api(app)
 
 buttonInfo = {}
+dummy={
+    'sadab': 'sifar'
+}
+
 
 class Fitness(Resource):
     def get(self, btn_id):
-        if btn_id=="all":
-            return buttonInfo
-        return {btn_id: buttonInfo[btn_id]}
+        if btn_id=='start':
+            dummy['button']="Start button has been pressed."
 
-    def post(self, btn_id):
-        buttonInfo[btn_id] = request.form['data']
-        return {btn_id: buttonInfo[btn_id]}
+
+        else:
+            dummy['button']="Stop button has been pressed."
+
+
+
+        return dummy
+
+    # def post(self, btn_id):
+    #     buttonInfo[btn_id] = request.form['data']
+    #     return {btn_id: buttonInfo[btn_id]}
 
 api.add_resource(Fitness, '/<string:btn_id>')
 
